@@ -66,7 +66,7 @@ namespace PadawansTask15
             List<long> squares = new List<long>();
             foreach (int d in data)
             {
-                squares.Add((long)(d * d));
+                squares.Add((long)d * d);
             }
             return squares;
             // TODO : Implement GetSquareSequence
@@ -91,15 +91,30 @@ namespace PadawansTask15
         public IEnumerable<string> GetPrefixItems(IEnumerable<string> data, string prefix)
         {
             if (prefix == null) throw new ArgumentNullException();
+
             List<string> pref = new List<string>();
-            foreach (string d in data)
+
+            if (prefix == "")
             {
-                if (d.StartsWith(prefix.ToLower()) || d.StartsWith(prefix.ToUpper()))
-                    pref.Add(d);
+                foreach (string d in data)
+                {
+                    if (d == null) continue;
+                    else pref.Add(d);
+                }
+                return pref;
             }
-            return pref;
-            // TODO : Implement GetPrefixItems
-            throw new NotImplementedException();
+            else
+            {
+                foreach (string d in data)
+                {
+                    if (d == null) continue;
+                    if (d.StartsWith(prefix.ToLower()) || d.StartsWith(prefix.ToUpper()))
+                        pref.Add(d);
+                }
+                return pref;
+            }
+                // TODO : Implement GetPrefixItems
+                throw new NotImplementedException();
         }
 
         /// <summary> Finds the 3 largest numbers from a sequence.</summary>
@@ -144,6 +159,7 @@ namespace PadawansTask15
             int sum = 0;
             foreach (var d in data)
             {
+                if (d == null) continue;
                 if (d.GetType() == typeof(int)) sum += (int)d;
             }
             return sum;

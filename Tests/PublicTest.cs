@@ -74,6 +74,12 @@ namespace PadawansTask15.Tests
             get
             {
                 {
+
+                    yield return new TestCaseData(
+                        new int[] { 65536, 65537, int.MaxValue },
+                        new long[] { 4294967296L, 4295098369L, 4611686014132420609L },
+                        "Method should return squares of source sequence."
+                    );
                     yield return new TestCaseData(
                         new int[] { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 },
                         new long[] { 100, 400, 900, 1600, 2500, 3600, 4900, 6400, 8100, 10000 },
@@ -105,13 +111,18 @@ namespace PadawansTask15.Tests
             get
             {
                 {
+
                     yield return new TestCaseData("A horse, a kingdom for a horse!".Split(' '),
-                        "horse",
-                        new string[] { "horse,", "horse!" },
-                        "Method should return items started with required prefix.");
+                                "horse",
+                                new string[] { "horse,", "horse!" },
+                                "Method should return items started with required prefix.");
                     yield return new TestCaseData("A horse, a kingdom for a horse!".Split(' '),
                         "cow",
                         new string[] { },
+                        "Method should return empty sequence if no items started with required prefix.");
+                    yield return new TestCaseData("A horse, a kingdom for a horse!".Split(' '),
+                        "",
+                        new string[] { "A", "horse,", "a", "kingdom", "for", "a", "horse!" },
                         "Method should return empty sequence if no items started with required prefix.");
                 }
             }
@@ -165,6 +176,10 @@ namespace PadawansTask15.Tests
             get
             {
                 {
+                    yield return new TestCaseData(
+                        new object[] { null, null, null }, 0, 
+                        "Method should return squares of source sequence."
+                    );
                     yield return new TestCaseData(
                         new object[] { 1, true, "a", "b", false, 1 }, 2,
                         "Method should return the sum of all integers."
